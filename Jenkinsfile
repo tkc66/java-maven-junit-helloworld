@@ -47,9 +47,12 @@ pipeline {
                         // stepcounter settings: [[encoding: 'UTF-8', filePattern: 'web/**/*.py', filePatternExclude: 'web/tests/**/*.py,web/migrations/**/*.py,web/test_*.py', key: 'SourceCode'],[encoding: 'UTF-8', filePattern: 'web/tests/**/*.py,web/test_*.py', key: 'TestCode']]
                         // junit '**/reports/junit.xml'
                        sh 'echo "Analysis stage"'
-                       checkStyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
-                       spotBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
-                       recordIssues(tools: [acuCobol()])
+//                        checkStyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+                       checkstyle(boolean includeCheckstyle = true)
+                       findbugs(boolean includeFindbugs = true)
+                       warnings(boolean includeWarnings = true)
+//                        spotBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
+//                        recordIssues(tools: [acuCobol()])
 
                     }
                 }
