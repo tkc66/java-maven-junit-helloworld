@@ -49,7 +49,8 @@ pipeline {
                          sh 'echo "Analysis stage"'
                          checkStyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
                          spotBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
-                         recordIssues(tools: [acuCobol()])
+                         publishIssues
+                         recordIssues
 
                     }
                 }
