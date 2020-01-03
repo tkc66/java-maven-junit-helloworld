@@ -49,8 +49,10 @@ pipeline {
                          sh 'echo "Analysis stage"'
                          checkStyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
                          spotBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
-                         publishIssues
-                         recordIssues
+                         recordIssues(
+                              enabledForFailure: true, aggregatingResults: true,
+                              tools: [java(), checkStyle(pattern: 'checkstyle.xml', reportEncoding: 'UTF-8')]
+                         )
 
                     }
                 }
