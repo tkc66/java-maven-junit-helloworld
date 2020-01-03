@@ -48,7 +48,7 @@ pipeline {
                         // junit '**/reports/junit.xml'
                        sh 'echo "Analysis stage"'
                        checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
-                       findbugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
+                       findBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
                        recordIssues(tools: [acuCobol()])
 
                     }
