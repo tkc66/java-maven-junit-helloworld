@@ -31,11 +31,6 @@ pipeline {
             steps {
                 script {
                     dir('.') {
-                       sh 'echo "Analysis stage"'
-                       checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
-                       findbugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
-                       recordIssues(tools: [acuCobol()])
-
                         step([$class: 'JacocoPublisher',
                               execPattern: 'target/*.exec',
                               classPattern: 'target/classes',
@@ -51,6 +46,11 @@ pipeline {
                         // ])
                         // stepcounter settings: [[encoding: 'UTF-8', filePattern: 'web/**/*.py', filePatternExclude: 'web/tests/**/*.py,web/migrations/**/*.py,web/test_*.py', key: 'SourceCode'],[encoding: 'UTF-8', filePattern: 'web/tests/**/*.py,web/test_*.py', key: 'TestCode']]
                         // junit '**/reports/junit.xml'
+                       sh 'echo "Analysis stage"'
+                       checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+                       findbugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
+                       recordIssues(tools: [acuCobol()])
+
                     }
                 }
             }
