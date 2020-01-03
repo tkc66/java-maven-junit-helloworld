@@ -31,12 +31,12 @@ pipeline {
             steps {
                 script {
                     dir('.') {
-                        step([$class: 'JacocoPublisher',
-                              execPattern: 'target/*.exec',
-                              classPattern: 'target/classes',
-                              sourcePattern: 'src/main/java',
-                              exclusionPattern: 'src/test*'
-                        ])
+//                         step([$class: 'JacocoPublisher',
+//                               execPattern: 'target/*.exec',
+//                               classPattern: 'target/classes',
+//                               sourcePattern: 'src/main/java',
+//                               exclusionPattern: 'src/test*'
+//                         ])
                         // step([$class: 'CoberturaPublisher',
                         //   coberturaReportFile: '**/reports/coverage.xml',
                         //   failUnhealthy: false,
@@ -47,10 +47,9 @@ pipeline {
                         // stepcounter settings: [[encoding: 'UTF-8', filePattern: 'web/**/*.py', filePatternExclude: 'web/tests/**/*.py,web/migrations/**/*.py,web/test_*.py', key: 'SourceCode'],[encoding: 'UTF-8', filePattern: 'web/tests/**/*.py,web/test_*.py', key: 'TestCode']]
                         // junit '**/reports/junit.xml'
                          sh 'echo "Analysis stage"'
-                         sh 'mvn checkstyle:check spotbugs:check'
                          checkStyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
                          spotBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
-//                        recordIssues(tools: [acuCobol()])
+                         recordIssues(tools: [acuCobol()])
 
                     }
                 }
