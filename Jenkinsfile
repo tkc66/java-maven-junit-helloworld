@@ -49,6 +49,7 @@ pipeline {
                        sh 'echo "Analysis stage"'
                        checkStyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
                        spotBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
+                       sh 'mvn checkstyle:check spotbugs:check'
 //                        recordIssues(tools: [acuCobol()])
 
                     }
