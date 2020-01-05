@@ -26,14 +26,18 @@ pipeline {
                     }
                 }
             }
+            post{
+                success{
+                    recordIssues　tool: checkStyle(pattern: '**/checkstyle-result.xml')
+                    recordIssues　tool: spotBugs(pattern: '**/spotbugsXml.xml')
+                }
+            }
         }
         stage('Analysis') {
             steps {
                 script {
                     dir('.') {
                          sh 'echo "Analysis stage"'
-                         recordIssues　tool: checkStyle(pattern: '**/checkstyle-result.xml')
-                         recordIssues　tool: spotBugs(pattern: '**/spotbugsXml.xml')
                     }
                 }
             }
