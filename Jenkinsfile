@@ -5,7 +5,7 @@ pipeline {
     environment {
         docker_image_name = "java8-maven3-junit5"
     }
-    
+
     agent {
     dockerfile {
         additionalBuildArgs '--no-cache=true --build-arg "JENKINS_USER_ID=112" --build-arg "JENKINS_GROUP_ID=117"'
@@ -26,12 +26,10 @@ pipeline {
                     }
                 }
             }
-            post{
-                success{
-                    checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
-//                     spotBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
-                    recordIssues　tool: checkStyle(pattern: "**/checkstyle-result.xml")
-                    recordIssues　tool: spotBugs(pattern: "**/spotbugsXml.xml")
+            post {
+                success {
+                recordIssues tool: checkStyle(pattern: "**/checkstyle-result.xml")
+                recordIssues tool: spotBugs(pattern: "**/spotbugsXml.xml")
                 }
             }
         }
@@ -39,7 +37,7 @@ pipeline {
             steps {
                 script {
                     dir('.') {
-                         sh 'echo "Analysis stage"'
+                        sh 'echo "Analysis stage"'
                     }
                 }
             }
