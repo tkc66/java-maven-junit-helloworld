@@ -30,6 +30,10 @@ pipeline {
                 success {
                 recordIssues tool: checkStyle(pattern: "**/checkstyle-result.xml")
                 recordIssues tool: spotBugs(pattern: "**/spotbugsXml.xml")
+                stepcounter settings: [[encoding: 'UTF-8', filePattern: 'web/**/*.py', filePatternExclude: 'web/tests/**/*.py,web/migrations/**/*.py,web/test_*.py', key: 'SourceCode'],[encoding: 'UTF-8', filePattern: 'web/tests/**/*.py,web/test_*.py', key: 'TestCode']]
+                junit '**/reports/junit.xml'
+
+
                 }
             }
         }
@@ -44,6 +48,13 @@ pipeline {
                                sourcePattern: 'src/main/java',
                                exclusionPattern: 'src/test*'
                          ])
+                    }
+                }
+            }
+        }
+    }
+
+}
 
 
                     }
