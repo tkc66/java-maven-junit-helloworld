@@ -28,9 +28,8 @@ pipeline {
             }
             post{
                 success{
-                        checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
-                        spotBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '',
-                         healthy: '', includePattern: '', pattern: '', unHealthy: ''
+                    checkstyle canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+                    spotBugs canComputeNew: false, canRunOnFailed: true, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '', unHealthy: ''
                     recordIssues　tool: checkStyle(pattern: "**/checkstyle-result.xml")
                     recordIssues　tool: spotBugs(pattern: "**/spotbugsXml.xml")
                 }
