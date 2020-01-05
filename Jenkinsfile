@@ -28,8 +28,8 @@ pipeline {
             }
             post{
                 success{
-                    recordIssues　tool: checkStyle(pattern: '**/checkstyle-result.xml')
-                    recordIssues　tool: spotBugs(pattern: '**/spotbugsXml.xml')
+                    recordIssues　tool: checkStyle(pattern: "**/checkstyle-result.xml")
+                    recordIssues　tool: spotBugs(pattern: "**/spotbugsXml.xml")
                 }
             }
         }
