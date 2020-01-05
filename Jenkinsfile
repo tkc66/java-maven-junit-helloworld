@@ -32,8 +32,8 @@ pipeline {
                 script {
                     dir('.') {
                          sh 'echo "Analysis stage"'
-                         recordIssues(tool: checkStyle(pattern: '**/checkstyle-result.xml')
-                         recordIssues(tool: spotBugs(pattern: '**/spotbugsXml.xml'),
+                         recordIssues　tool: checkStyle(pattern: '**/checkstyle-result.xml')
+                         recordIssues　tool: spotBugs(pattern: '**/spotbugsXml.xml')
                     }
                 }
             }
